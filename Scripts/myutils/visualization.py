@@ -1,14 +1,15 @@
 import pandas as pd
 import urllib.request as ur
-import os
 import matplotlib.pyplot as plt
 import seaborn as sns
-import numpy as np
-from sklearn.feature_selection import SelectKBest,f_classif
-from sklearn.feature_selection import VarianceThreshold
-from kneed import KneeLocator
 from sklearn.cluster import KMeans
 from yellowbrick.cluster import SilhouetteVisualizer
+import missingno as msno
+
+
+def plot_missing_values(df):
+    msno.matrix(df)
+    plt.show()
 
 
 def cor_heatmap(df):

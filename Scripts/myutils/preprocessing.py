@@ -14,7 +14,13 @@ from sklearn.metrics import silhouette_score
 from sklearn.decomposition import PCA
 from scipy import stats
 
-
+def drop_attributes(df,threshold):
+    cols = df.columns
+    for col in cols:
+        if df[col].isnull().sum() / len(df) > threshold:
+            df.drop(col, axis=1, inplace=True)
+            print(f"Column {col} dropped")
+    return df
 
 def normalize (df):
     scaler = StandardScaler()
@@ -29,9 +35,12 @@ def drop_duprows(df):
     
 def drop_row_missing_val (df,threshold):
     thresh = int((1 - threshold) * df.shape[1])
-    
+    original_rows = df.shape[0]
     # Drop rows with missing value count above the threshold
     df_dropped = df.dropna(thresh=thresh)
+    # Calculate the number of rows removed
+    new_rows = df_dropped.shape[0]
+    print(f"Removed {original_rows - new_rows} rows with missing values")
     
     return df_dropped
 
@@ -193,7 +202,6 @@ def binary_encoding(df, label, positive_label):
     mapping = {positive_label: 1}
     df[label] = df[label].map(lambda x: mapping.get(x, 0))
     return df
-
 
 def perform_PCA(df,n_components):
     pca = PCA(n_components=n_components)
