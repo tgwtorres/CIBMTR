@@ -1,7 +1,10 @@
 import pandas as pd
 import urllib.request as ur
 import matplotlib.pyplot as plt
+from matplotlib import pyplot as plt
 import seaborn as sns
+
+from kneed import KneeLocator
 from sklearn.cluster import KMeans
 from yellowbrick.cluster import SilhouetteVisualizer
 import missingno as msno
@@ -9,6 +12,7 @@ import missingno as msno
 
 def plot_missing_values(df):
     msno.matrix(df)
+    plt.title("Missing Values Matrix", fontsize=20)
     plt.show()
 
 

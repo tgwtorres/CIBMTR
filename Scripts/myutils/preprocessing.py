@@ -22,6 +22,24 @@ def drop_attributes(df,threshold):
             print(f"Column {col} dropped")
     return df
 
+def missing_val_df(df):
+    missingCount = df.isnull().sum()
+    missing_percentage = (missingCount/ len(df) * 100).round(2)
+    
+    missing_df = pd.DataFrame({
+        'Missing Values': missingCount,
+        'Missing Percent': missing_percentage,
+        'Data Type': df.dtypes
+    })
+
+    missing_df.sort_values(by='Missing Percent', ascending=False, inplace=True)
+    missing_df = missing_df.reset_index()
+    missing_df = missing_df.rename(columns={'index': 'variables'})
+
+    return missing_df
+
+    
+
 def normalize (df):
     scaler = StandardScaler()
     normalized_data = scaler.fit_transform(df)
