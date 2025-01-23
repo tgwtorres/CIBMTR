@@ -47,6 +47,15 @@ def plot_elbow_graph(sse, k_values, elbow_point):
 
     plt.show()
 
+def scatter_plot(df, x, y):
+    plt.figure(figsize=(10, 6))
+    plt.scatter(df[x], df[y], s=50, c='blue', marker='o', alpha=0.5)
+    plt.title(f'{x} vs {y}')
+    plt.xlabel(x)
+    plt.ylabel(y)
+    plt.grid(True)
+    plt.show()
+
 def plot_silhouette_scores(X, sil_scores,range_n_clusters):
     silhouette_scores = sil_scores
     
