@@ -22,7 +22,11 @@ def cor_heatmap(df):
     sns.heatmap(corr_mat, annot=False, cmap='coolwarm', fmt=".2f", linewidths=0.5)
     plt.title("Correlation Heatmap")
     plt.show()
-    
+ 
+
+
+
+
 def boxplot(df):
     df.reset_index(drop=True, inplace=True)
     plt.figure(figsize=(12, 12))
