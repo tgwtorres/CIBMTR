@@ -135,6 +135,10 @@ def remove_outliers (df,threshold):
     
     return cleaned_df
 
+def get_num_cols(df):
+    num_cols = df.select_dtypes(include=['number']).columns.tolist()
+    return num_cols
+
 
 def numeric_df(df):
     numeric_cols = df.select_dtypes(include=['number'])
@@ -142,6 +146,10 @@ def numeric_df(df):
 
 def get_cat_cols(df):
     categorical_cols = df.select_dtypes(include = ['object','category']).columns.tolist()
+    return categorical_cols
+
+def categorical_df(df):
+    categorical_cols = df.select_dtypes(include = ['object','category'])
     return categorical_cols
 
 def output_file (filename,directory,df):
